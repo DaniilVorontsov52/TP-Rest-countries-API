@@ -8,7 +8,9 @@ $themeChanger.addEventListener("click", (e) => {
 });
 
 async function loadAllCountries() {
-	const response = await fetch("https://restcountries.com");
+	const response = await fetch(
+		"https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital",
+	);
 	const data = await response.json();
 	console.log(data);
 }
@@ -52,4 +54,25 @@ function createCountries() {
 	$div.classList.add("country-card");
 	return $div;
 }
+
 createCountries();
+
+fonction créerPays ( pays ) {
+ const div = document . createElement ( " div " );
+
+ div .innerHTML = `
+ <img src=" ${ country .flags.png } " alt="Drapeau du pays ${ country .name.common } ">
+ <div class="card-text">
+ <h2> ${ country .name.common } </h2>
+ <p>Population : ${ country .population } </p>
+ <p>Région : ${ country .region } </p>
+ <p>Capitale : ${ country .capital ? pays .capitale[ 0 ] : " Pas de majuscule " } </p>
+ </div>
+ ` ;
+
+ div .classList.add ( " country-card " );
+
+ $countries.appendChild ( div );
+
+ renvoyer div ;
+ }
